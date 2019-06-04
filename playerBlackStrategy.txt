@@ -1,0 +1,141 @@
+public void playerBlackStrategy(){
+        
+        //leave these top 4 lines at the top
+        playerBlack = "loserz- \n but w/ dignity";  //put player1 name here
+        showText(playerBlack,70,100); //shows your name
+        GreenfootImage image2 = new GreenfootImage("black.png"); //sets image to black checker
+        String colorInitial = new String("b"); //fills the 2d array grid with this value
+        String opposite = new String("r");
+        
+        
+        
+        //replace the following code with your strategy
+        //but the second line shows you how to place your checker
+       
+         if(firstPlay){
+            placeCol(3, colorInitial, image2);
+        }
+        
+         //checks for horizontal 3 in a row for player
+        int inRow = 0;
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] != null && grid[row][col].equals(colorInitial)){
+                    inRow++;
+                    if(inRow == 3 && col < grid[0].length-1 && grid[row][col+1] == null){
+                        placeCol(col + 1,colorInitial,image2);
+                    }
+                    else if(inRow == 3 && col > 2 && grid[row][col-3] == null){
+                        placeCol(col - 3,colorInitial,image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //checks for vertical 3 in a row for player
+        for(int col = 0; col < grid[0].length; col++){
+            for(int row = 0; row < grid.length; row++){
+                if(grid[row][col] != null && grid[row][col].equals(colorInitial)){
+                    inRow++;
+                    if(inRow == 3 && row > 2 && grid[row-3][col] == null){
+                        placeCol(col, colorInitial, image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        
+          //after 3 in a row player
+          inRow = 0;
+          String owo = "";
+        for(int row = 0; row < grid.length; row++){
+            owo = "";
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] == null){
+                    owo += "-";
+                }
+                else{
+                    owo += grid[row][col];
+                }
+            }
+            if(owo.contains(colorInitial + colorInitial + "-" + colorInitial)){
+                placeCol(owo.indexOf(colorInitial + colorInitial + "-" + colorInitial) + 2, colorInitial, image2);
+
+            }
+            else if(owo.contains(colorInitial + "-" + colorInitial + colorInitial)){
+                placeCol(owo.indexOf(colorInitial + colorInitial + "-" + colorInitial) + 1, colorInitial, image2);
+
+            }
+        }
+        
+        inRow = 0;
+
+
+        
+        //checks for vertical 3 in a row for opponent
+        for(int col = 0; col < grid[0].length; col++){
+            for(int row = 0; row < grid.length; row++){
+                if(grid[row][col] != null && grid[row][col].equals(opposite)){
+                    inRow++;
+                    if(inRow == 3 && row > 2 && grid[row-3][col] == null){
+                        placeCol(col, colorInitial, image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //checks for horizontal 3 in a row for opposition
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] != null && grid[row][col].equals(opposite)){
+                    inRow++;
+                    if(inRow == 3 && col < grid[0].length-1 && grid[row][col+1] == null){
+                        placeCol(col + 1,colorInitial,image2);
+                    }
+                    else if(inRow == 3 && col > 2 && grid[row][col-3] == null){
+                        placeCol(col - 3,colorInitial,image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //after 3 in a row opposite
+        inRow = 0;
+        for(int row = 0; row < grid.length; row++){
+            owo = "";
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] == null){
+                    owo += "-";
+                }
+                else{
+                    owo += grid[row][col];
+                }
+            }
+            if(owo.contains(opposite + opposite + "-" + opposite)){
+                placeCol(owo.indexOf(opposite + opposite + "-" + opposite) + 2, colorInitial, image2);
+
+            }
+            else if(owo.contains(opposite + "-" + opposite + opposite)){
+                placeCol(owo.indexOf(opposite + opposite + "-" + opposite) + 1, colorInitial, image2);
+
+            }
+        }
+        
+        inRow = 0;
+
+        int colToPlace = (int)(Math.random()*3+2);
+        placeCol(colToPlace,colorInitial,image2);  //plays in the specified col and fills the 2D array with the 2nd parameter String
+       
+    }
