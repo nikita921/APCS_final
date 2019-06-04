@@ -274,6 +274,74 @@ public class MyWorld extends World
         }
         
         inRow = 0;
+        
+        //checks for horizontal 2 in a row for opponent
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] != null && grid[row][col].equals(opposite)){
+                    inRow++;
+                    if(inRow == 2 && col < grid[0].length-1 && grid[row][col+1] == null){
+                        placeCol(col + 1,colorInitial,image2);
+                    }
+                    else if(inRow == 2 && col > 1 && grid[row][col-2] == null){
+                        placeCol(col - 2,colorInitial,image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //checks for vertical 2 in a row for opponent
+        for(int col = 0; col < grid[0].length; col++){
+            for(int row = 0; row < grid.length; row++){
+                if(grid[row][col] != null && grid[row][col].equals(opposite)){
+                    inRow++;
+                    if(inRow == 2 && row > 1 && grid[row-2][col] == null){
+                        placeCol(col, colorInitial, image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //checks for horizontal 2 in a row for player
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] != null && grid[row][col].equals(colorInitial)){
+                    inRow++;
+                    if(inRow == 2 && col < grid[0].length-1 && grid[row][col+1] == null){
+                        placeCol(col + 1,colorInitial,image2);
+                    }
+                    else if(inRow == 2 && col > 1 && grid[row][col-2] == null){
+                        placeCol(col - 2,colorInitial,image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+        //checks for vertical 2 in a row for player
+        for(int col = 0; col < grid[0].length; col++){
+            for(int row = 0; row < grid.length; row++){
+                if(grid[row][col] != null && grid[row][col].equals(colorInitial)){
+                    inRow++;
+                    if(inRow == 2 && row > 1 && grid[row-2][col] == null){
+                        placeCol(col, colorInitial, image2);
+                    }
+                }
+                else{
+                    inRow = 0;
+                }
+            }
+        }
+        inRow = 0;
+
 
         int colToPlace = (int)(Math.random()*3+2);
         placeCol(colToPlace,colorInitial,image2);  //plays in the specified col and fills the 2D array with the 2nd parameter String
